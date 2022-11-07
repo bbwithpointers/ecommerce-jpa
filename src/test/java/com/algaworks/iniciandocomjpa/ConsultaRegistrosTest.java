@@ -1,13 +1,13 @@
 package com.algaworks.iniciandocomjpa;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import com.algaworks.model.Produto;
+import org.junit.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import static org.junit.Assert.*;
 
 public class ConsultaRegistrosTest {
 
@@ -35,5 +35,22 @@ public class ConsultaRegistrosTest {
         entityManager.close();
     }
 
+
+    @Test
+    public void buscarPorId() {
+        Produto produto = entityManager.find(Produto.class, 1);
+        assertNotNull(produto);
+    }
+
+    @Test
+    public void atualizaReferencia(){
+        Produto produto = entityManager.find(Produto.class, 1);
+        produto.setNome("Microfone");
+
+        // volta original
+        entityManager.refresh(produto);
+
+        assertEquals("Kindle", produto.getNome());
+    }
 
 }
