@@ -1,5 +1,6 @@
 package com.algaworks.iniciandocomjpa;
 
+import com.algaworks.EntityManagerTest;
 import com.algaworks.model.Produto;
 import org.junit.Test;
 
